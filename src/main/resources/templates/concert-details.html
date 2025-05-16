@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Concerts</title>
+  <meta charset="UTF-8">
+</head>
+<body layout:fragment="content">
+<h1 th:text="${concert.getBand().name} + ' - Average : ' + ${averageRating}"></h1>
+<h2 th:text="${concert.concertDate + ' - ' + concert.getVenue().name + ', ' + concert.getVenue().city}"></h2>
+<p th:text="${concert.description}"></p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Score</th>
+    <th>Comments</th>
+    <th>Author</th>
+  </tr>
+  </thead>
+  <tr th:each="rating: ${ratings}">
+    <td th:text="*{rating.score}"></td>
+    <td th:text="*{rating.description}"></td>
+    <td th:text="*{rating.getUser().username}"></td>
+  </tr>
+</table>
+</body>
+</html>

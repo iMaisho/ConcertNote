@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Concerts</title>
+  <meta charset="UTF-8">
+</head>
+<body layout:fragment="content">
+<table>
+  <thead>
+  <tr>
+  <th>Band</th>
+  <th>Venue</th>
+  <th>City</th>
+  <th>Date</th>
+  <th>Description</th>
+  </tr>
+  </thead>
+<tr th:each="concert: ${concerts}" >
+  <td th:text="*{concert.getBand().name}"></td>
+  <td th:text="*{concert.getVenue().name}"></td>
+  <td th:text="*{concert.getVenue().city}"></td>
+  <td th:text="*{concert.concertDate}"></td>
+  <td th:text="*{concert.description}"></td>
+  <td ><a th:href="@{/concerts/{id}(id=${concert.id})}">Details</a></td>
+</tr>
+</table>
+
+</body>
+</html>

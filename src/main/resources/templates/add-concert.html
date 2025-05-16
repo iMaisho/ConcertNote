@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout}">
+<head>
+    <title>Inscription</title>
+    <meta charset="UTF-8">
+</head>
+
+<body layout:fragment="content">
+<div  th:if="${session.userId == null}">
+<h1>You need to be logged in to add a concert</h1>
+<a href="/login">Log In</a>
+</div>
+
+<div th:if="${session.userId != null}" >
+<h1>Add a concert</h1>
+<form th:action="@{/concerts/add}" th:object="${concert}" method="post">
+    <div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" th:field="*{description}"/>
+    </div>
+
+    <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{concertDate}"/>
+    </div>
+    <div>
+        <label for="band">Band:</label>
+        <select id="band" th:field="*{band}">
+            <option th:each="band : ${bands}"
+                    th:value="${band.id}"
+                    th:text="${band.name}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <label for="venue">Venue:</label>
+        <select id="venue" th:field="*{venue}">
+            <option th:each="venue : ${venues}"
+                    th:value="${venue.id}"
+                    th:text="${venue.name + ' - ' + venue.city}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Confirm</button>
+    </div>
+</form>
+</div>
+</body>
+</html>

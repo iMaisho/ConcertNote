@@ -30,7 +30,7 @@ public class User {
     @Column(name= "password_hash", nullable = false)
     private String passwordHash;
 
-    @OneToMany(mappedBy = "userexi", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Rating> ratings = new ArrayList<>();
 
     public void addRating(Rating rating) {

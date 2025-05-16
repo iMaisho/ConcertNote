@@ -2,6 +2,8 @@
 package fr.formation.spring.concertnote.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -25,8 +27,9 @@ public class Rating {
     private Long id;
 
 
-    // TODO: Entre 1 et 5
     @Column(nullable = false)
+    @Min(1)
+    @Max(5)
     private int score;
 
     @Column(nullable = false)
